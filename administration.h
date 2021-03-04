@@ -12,10 +12,13 @@ class Administration
   public:
     ~Administration();
 
-    static void Create();
-    static void Destroy();
+	//delete copy ctor
+	Administration(const Administration&) = delete;
 
-    static Administration * Instance();
+	//delete copy assignment operator
+	Administration & operator=(const Administration&) = delete;
+
+    static Administration & Instance();
 
     void addPerson(Person * person);
     void addCourse(Course * course);
@@ -25,7 +28,6 @@ class Administration
 
 
   private:
-    static Administration * _instance;
 
     Administration();
 

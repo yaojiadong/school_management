@@ -7,9 +7,6 @@
 
 int main()
 {
-	Administration::Create();
-	auto * administration = Administration::Instance();
-
 	Teacher *wouter, *danny;
 	Student *paul, *wen;
 	Course *statistics;
@@ -21,24 +18,21 @@ int main()
 
 	statistics = new Course("Statistics", "Aula", danny,20);
 
-	administration->addPerson(wouter);
-	administration->addPerson(wen);
-	administration->addPerson(paul);
-	administration->addPerson(danny);
-	administration->addCourse(statistics);
+	Administration::Instance().addPerson(wouter);
+	Administration::Instance().addPerson(wen);
+	Administration::Instance().addPerson(paul);
+	Administration::Instance().addPerson(danny);
+	Administration::Instance().addCourse(statistics);
 
 	danny->increaseSalary(20000.0f);
 	danny->printInformation();
 
-	administration->printAllPersons();
+	Administration::Instance().printAllPersons();
 
-	administration->addStudentToCourse(wen, statistics);
-	administration->addStudentToCourse(paul, statistics);
+	Administration::Instance().addStudentToCourse(wen, statistics);
+	Administration::Instance().addStudentToCourse(paul, statistics);
 
 	statistics->printInformation();
-
-	Administration::Destroy();
-
 
 	return 0;
 }
