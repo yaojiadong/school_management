@@ -4,43 +4,39 @@
 #include <algorithm>
 
 Student::Student(const std::string & name, const std::string & firstName, long long databaseID)
-  : Person(name, firstName, databaseID)
-  {
-  }
+: Person(name, firstName, databaseID)
+{}
 
 
-void Student::changeProgram(Program program)
-  {
-  _program = program;
-  }
+void Student::changeProgram(Program program){
+	_program = program;
+}
 
-Program Student::getProgram()
-  {
-  return _program;
-  }
+Program Student::getProgram(){
+	return _program;
+}
 
-void Student::printInformation() const
-  {
-  std::cout << getDatabaseID() << ": " << getFirstName() << " " << getName() << " (" << _courses.size() << ")" << std::endl;
-  }
+void Student::printInformation() const{
+	std::cout << getDatabaseID() << ": " << getFirstName() << " " << getName() << " (" << _courses.size() << ")" << std::endl;
+}
 
-void Student::printSchedule() const
-  {
-  for(const Course * c :_courses)
-    {
-    std::cout << c->name() << " " << c->room() << std::endl;
-    }
-  }
+void Student::printSchedule() const{
+	for(auto c :_courses){
+		std::cout << c->name() << " " << c->room() << std::endl;
+	}
+}
 
-bool Student::addCourse(const Course * course)
-  {
-  if(course == nullptr)
-    return false;
+bool Student::addCourse(const std::shared_ptr<Course>& course)
+{
+	/*not needed with reference*/
+//	if(course == nullptr)
+//		return false;
 
-//  if(_courses.contains(course))
-  if(std::find(_courses.begin(),_courses.end(), course) != _courses.end())
-    return false;
 
-  _courses.push_back(course);
-  return true;
-  }
+	if(std::find(_courses.begin(),_courses.end(), course) != _courses.end())
+		return false;
+
+	_courses.push_back(course);
+
+	return true;
+}

@@ -4,6 +4,9 @@
 #include "course.h"
 #include "student.h"
 
+#include <iostream>
+
+//Administration Administration::_instance = 0;
 
 Administration::Administration()
 {
@@ -11,24 +14,38 @@ Administration::Administration()
 
 Administration::~Administration()
 {
-	for(Person * person : _persons)
-		delete person;
-
-	for(Course * course : _courses)
-		delete course;
+//	for(Person * person : _persons)
+//		delete person;
+//
+//	for(Course * course : _courses)
+//		delete course;
 }
 
-
-Administration & Administration::Instance()
+void Administration::Create()
 {
-	static Administration _instance;
-	return _instance;
+//	if(_instance != 0)
+//		return;
+//
+//	_instance = new Administration();
+
 }
 
-void Administration::addPerson(Person * person)
+void Administration::Destroy()
+{
+//	delete _instance;
+//	_instance = 0;
+}
+
+Administration& Administration::Instance()
+{
+	static Administration instance;
+	return instance;
+}
+
+void Administration::addPerson(const std::shared_ptr<Person>& person)
 {
 	// check that we don't have two persons with the same name
-	for(Person * curPerson : _persons)
+	for(auto curPerson : _persons)
 	{
 		if(curPerson->getName() == person->getName() &&
 				curPerson->getFirstName() == person->getFirstName())
@@ -38,10 +55,10 @@ void Administration::addPerson(Person * person)
 	_persons.push_back(person);
 }
 
-void Administration::addCourse(Course * course)
+void Administration::addCourse(const std::shared_ptr<Course>& course)
 {
 	// check that we don't have two courses with the same name
-	for(Course * curCourse : _courses)
+	for(auto curCourse : _courses)
 	{
 		if(curCourse->name() == course->name())
 			return;
@@ -50,20 +67,22 @@ void Administration::addCourse(Course * course)
 	_courses.push_back(course);
 }
 
-void Administration::addStudentToCourse(Student * student, Course * course)
+void Administration::addStudentToCourse(const std::shared_ptr<Student>& student, const std::shared_ptr<Course>& course)
 {
-	course->enrollStudent(student);
+	course->enrollStudent(student);//
 	student->addCourse(course);
+
+
 }
 
 void Administration::printAllPersons() const
 {
-	for(Person * person : _persons)
+	for(auto person : _persons)
 		person->printInformation();
 }
 
 void Administration::printAllCourses() const
 {
-	for(Course * course : _courses)
+	for(auto course : _courses)
 		course->printInformation();
 }
