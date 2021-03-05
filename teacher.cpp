@@ -19,8 +19,9 @@ void Teacher::increaseSalary(float payRaise)
 
 void Teacher::printInformation() const
 {
-	std::cout << getName() << ", " << getFirstName() << " (" << _salary << ")" << std::endl;
+	std::cout << getName() << ", " << getFirstName() << " (" << _salary << ")" << " teaches "<<std::endl;
 	for(auto course:_courses)
-		std::cout << course->room()<<std::endl;
+		std::cout << course->name()<<std::endl;
+
 }
 

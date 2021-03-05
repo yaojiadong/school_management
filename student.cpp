@@ -28,10 +28,9 @@ void Student::printSchedule() const{
 
 bool Student::addCourse(const std::shared_ptr<Course>& course)
 {
-	/*not needed with reference*/
-//	if(course == nullptr)
-//		return false;
-
+	/*todo: needed?*/
+	if(course == nullptr)
+		return false;
 
 	if(std::find(_courses.begin(),_courses.end(), course) != _courses.end())
 		return false;

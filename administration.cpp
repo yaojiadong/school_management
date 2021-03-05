@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-//Administration Administration::_instance = 0;
+
 
 Administration::Administration()
 {
@@ -14,27 +14,9 @@ Administration::Administration()
 
 Administration::~Administration()
 {
-//	for(Person * person : _persons)
-//		delete person;
-//
-//	for(Course * course : _courses)
-//		delete course;
-}
-
-void Administration::Create()
-{
-//	if(_instance != 0)
-//		return;
-//
-//	_instance = new Administration();
 
 }
 
-void Administration::Destroy()
-{
-//	delete _instance;
-//	_instance = 0;
-}
 
 Administration& Administration::Instance()
 {
@@ -69,10 +51,8 @@ void Administration::addCourse(const std::shared_ptr<Course>& course)
 
 void Administration::addStudentToCourse(const std::shared_ptr<Student>& student, const std::shared_ptr<Course>& course)
 {
-	course->enrollStudent(student);//
+	course->enrollStudent(student);
 	student->addCourse(course);
-
-
 }
 
 void Administration::printAllPersons() const

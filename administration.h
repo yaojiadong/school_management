@@ -19,9 +19,6 @@ public:
 	//delete copy assignment operator
 	Administration & operator=(const Administration&) = delete;
 
-	static void Create();
-	static void Destroy();
-
 	static Administration& Instance();
 
 	void addPerson(const std::shared_ptr<Person>& person);
@@ -32,7 +29,6 @@ public:
 
 
 private:
-//	static Administration  _instance;
 
 	Administration();
 
